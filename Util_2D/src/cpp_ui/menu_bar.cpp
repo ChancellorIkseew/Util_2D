@@ -4,8 +4,8 @@
 #include <QtWidgets/QFileDialog>
 #include <iostream>
 
-MenuBar::MenuBar(QMainWindow* parent, Image* imageLabel) :
-	QMenuBar(parent), mainWindow(parent), imageLabel(imageLabel) {
+MenuBar::MenuBar(QMainWindow* parent, Workspace* workspace) :
+	QMenuBar(parent), mainWindow(parent), workspace(workspace) {
 	QMenu* file = new QMenu("file", this);
 	file->addAction("open", this, &MenuBar::onOpenFile);
 	file->addAction("save");
@@ -24,8 +24,8 @@ void MenuBar::onOpenFile() {
 	QString fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), "", tr("Image Files (*.png *.jpg *.bmp)"));
 	if (fileName.isEmpty())
 		return;
-	QImage qImage = QImage(fileName, nullptr /*format comes from filename*/);
-	imageLabel->set(qImage);
+	QImage image = QImage(fileName, nullptr /*format comes from filename*/);
+	workspace->setImage(image);
 }
 
 void MenuBar::setStyle() {

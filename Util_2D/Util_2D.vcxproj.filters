@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp_ui\image.cpp">
+    <ClCompile Include="src\cpp_ui\workspace.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp_ui\menu_bar.cpp">
@@ -56,7 +56,7 @@
     <ClInclude Include="tools\fast_migration.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\cpp_ui\image.h">
+    <ClInclude Include="src\cpp_ui\workspace.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp_ui\menu_bar.h">

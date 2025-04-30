@@ -1,8 +1,8 @@
 #include "tool_bar.h"
 //
-#include "../tools/pixel.h"
-#include "../tools/contrast.h"
-#include "../tools/fast_migration.h"
+#include "tools/pixel.h"
+#include "tools/contrast.h"
+#include "tools/fast_migration.h"
 
 enum Tools {
     PIXEL,
@@ -12,8 +12,8 @@ enum Tools {
     FAST_MIGRATION,
 };
 
-ToolBar::ToolBar(QWidget* parent, Image* imageLabel) :
-	QToolBar(parent), imageLabel(imageLabel) {
+ToolBar::ToolBar(QWidget* parent, Workspace* workspace) :
+	QToolBar(parent), workspace(workspace) {
 	setOrientation(Qt::Vertical);
     //
     addAction("pixel",          [this]() { useTool(PIXEL); });
@@ -25,15 +25,15 @@ ToolBar::ToolBar(QWidget* parent, Image* imageLabel) :
 
 
 void ToolBar::useTool(const int id) {
-    QImage& image = imageLabel->get();
+    QImage& image = workspace->image();
     if (image.isNull())
         return;
     //
     switch (id) {
-    case PIXEL: editPixel(image, imageLabel->selectedPixel()); break;
+    case PIXEL: editPixel(image, workspace->selectedPixel()); break;
     case CONTRAST: changeContrast(image); break;
-    case FAST_MIGRATION: fastMigration(image, imageLabel->selectedPixel()); break;
+    case FAST_MIGRATION: fastMigration(image, workspace->selectedPixel()); break;
     }
     //
-    imageLabel->setPixmap(QPixmap::fromImage(image));
+    workspace->setImage(image);
 }

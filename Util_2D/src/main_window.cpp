@@ -5,7 +5,7 @@
 #include <QtWidgets/qmessagebox.h>
 #include <QtWidgets/QFileDialog>
 #include <iostream>
-#include "cpp_ui/image.h"
+#include "cpp_ui/workspace.h"
 #include "cpp_ui/scale_slider.h"
 #include "cpp_ui/menu_bar.h"
 #include "cpp_ui/tool_bar.h"
@@ -18,18 +18,18 @@ MainWindow::MainWindow() : QMainWindow(nullptr) {
     QVBoxLayout* mainLayout = new QVBoxLayout(centralWidget);
     setMouseTracking(true);
 
-    Image* image = new Image(this);
+    Workspace* workspace = new Workspace(this);
 
-    MenuBar* menuBar = new MenuBar(this, image);
+    MenuBar* menuBar = new MenuBar(this, workspace);
     mainLayout->addWidget(menuBar, Qt::AlignTop);
     
-    ToolBar* toolBar = new ToolBar(this, image);
+    ToolBar* toolBar = new ToolBar(this, workspace);
     mainLayout->addWidget(toolBar, Qt::AlignTop | Qt::AlignLeft);
     
     ScaleSlider* scaleSlider = new ScaleSlider(this);
     mainLayout->addWidget(scaleSlider, Qt::AlignBottom | Qt::AlignRight);
 
-    scaleSlider->connectTo(std::bind(&Image::scale, image, std::placeholders::_1));
+    scaleSlider->connectTo(std::bind(&Workspace::scale, workspace, std::placeholders::_1));
     //connect(this, &MainWindow::wheelEvent, this, &ScaleSlider::onMouseWheelMove);
 }
 

@@ -1,12 +1,12 @@
 #pragma once
 #include <QtWidgets/QToolBar>
-#include "image.h"
+#include "workspace.h"
 
 class ToolBar : public QToolBar {
 public:
-	ToolBar(QWidget* parent, Image* imageLabel);
+	ToolBar(QWidget* parent, Workspace* workspace);
 private:
 	void useTool(const int id);
 private:
-	Image* imageLabel;
+	Workspace* workspace;
 };

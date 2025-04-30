@@ -1,15 +1,15 @@
 #pragma once
 #include <QtWidgets/QmenuBar>
 #include <QtWidgets/qmainwindow.h>
-#include "image.h"
+#include "workspace.h"
 
 class MenuBar : public QMenuBar {
 public:
-	MenuBar(QMainWindow* parent, Image* image);
+	MenuBar(QMainWindow* parent, Workspace* workspace);
 private:
 	void onOpenFile();
 	void setStyle();
 private:
-	Image* imageLabel;
+	Workspace* workspace;
 	QMainWindow* mainWindow;
 };
