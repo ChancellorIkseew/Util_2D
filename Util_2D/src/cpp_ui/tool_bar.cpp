@@ -1,6 +1,7 @@
 #include "tool_bar.h"
 //
 #include "tools/pixel.h"
+#include "tools/blur.h"
 #include "tools/contrast.h"
 #include "tools/fast_migration.h"
 
@@ -31,6 +32,7 @@ void ToolBar::useTool(const int id) {
     //
     switch (id) {
     case PIXEL: editPixel(image, workspace->selectedPixel()); break;
+    case BLUR:  blur(image); break;
     case CONTRAST: changeContrast(image); break;
     case FAST_MIGRATION: fastMigration(image, workspace->selectedPixel()); break;
     }

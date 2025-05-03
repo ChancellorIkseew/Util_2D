@@ -22,7 +22,9 @@ void Workspace::mousePressEvent(QMouseEvent* event) {
 		return;
 	Qt::MouseButton button = event->button();
 	//QPoint itemPos(item->pos().x(), item->pos().y());
-	_selectedPixel = event->pos() / _scale;
+
+	_selectedPixel.setX(static_cast<qreal>(event->pos().x()) / _scale);
+	_selectedPixel.setY(static_cast<qreal>(event->pos().y()) / _scale);
 	std::cout << "mouse_click" << std::endl;
 	std::cout << _selectedPixel.x() << " " << _selectedPixel.y() << '\n';
 }
