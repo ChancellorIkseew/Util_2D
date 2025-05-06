@@ -27,6 +27,8 @@ void Workspace::mousePressEvent(QMouseEvent* event) {
 	_selectedPixel.setY(static_cast<qreal>(event->pos().y()) / _scale);
 	std::cout << "mouse_click" << std::endl;
 	std::cout << _selectedPixel.x() << " " << _selectedPixel.y() << '\n';
+
+	handler();
 }
 
 void Workspace::setImage(QImage& image) {

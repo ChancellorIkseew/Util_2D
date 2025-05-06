@@ -17,20 +17,22 @@ ToolBar::ToolBar(QWidget* parent, Workspace* workspace) :
 	QToolBar(parent), workspace(workspace) {
 	setOrientation(Qt::Vertical);
     //
-    addAction("pixel",          [this]() { useTool(PIXEL); });
-    addAction("brush",          [this]() { useTool(BRUSH); });
-    addAction("blur",           [this]() { useTool(BLUR); });
-    addAction("contrast",       [this]() { useTool(CONTRAST); });
-    addAction("fast migration", [this]() { useTool(FAST_MIGRATION); });
+    addAction("pixel",          [this]() { toolID = PIXEL; });
+    addAction("brush",          [this]() { toolID = BRUSH; });
+    addAction("blur",           [this]() { toolID = BLUR; });
+    addAction("contrast",       [this]() { toolID = CONTRAST; });
+    addAction("fast migration", [this]() { toolID = FAST_MIGRATION; });
+
+    workspace->connectTo(std::bind(&ToolBar::useTool, this));
 }
 
 
-void ToolBar::useTool(const int id) {
+void ToolBar::useTool() {
     QImage& image = workspace->image();
     if (image.isNull())
         return;
     //
-    switch (id) {
+    switch (toolID) {
     case PIXEL: editPixel(image, workspace->selectedPixel()); break;
     case BLUR:  blur(image); break;
     case CONTRAST: changeContrast(image); break;

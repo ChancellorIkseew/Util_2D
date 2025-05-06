@@ -6,7 +6,8 @@ class ToolBar : public QToolBar {
 public:
 	ToolBar(QWidget* parent, Workspace* workspace);
 private:
-	void useTool(const int id);
+	void useTool();
 private:
+	int toolID = 0;
 	Workspace* workspace;
 };
