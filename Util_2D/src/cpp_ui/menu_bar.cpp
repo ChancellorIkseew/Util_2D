@@ -7,7 +7,7 @@ MenuBar::MenuBar(QMainWindow* parent, Workspace* workspace) :
 	QMenuBar(parent), mainWindow(parent), workspace(workspace) {
 	QMenu* file = new QMenu("file", this);
 	file->addAction("open", this, &MenuBar::openFile);
-	file->addAction("save", this, &MenuBar::saveFile);
+	file->addAction("save", [&]() { saveFile(imageFilePath); });
 	file->addAction("save as", this, &MenuBar::saveFileAs);
 	addMenu(file);
 
@@ -20,29 +20,25 @@ MenuBar::MenuBar(QMainWindow* parent, Workspace* workspace) :
 }
 
 void MenuBar::openFile() {
-	QString fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), ""/*dir*/, tr("Image files (*.png *.jpg *.bmp)"));
-	if (fileName.isEmpty())
+	QString filePath = QFileDialog::getOpenFileName(this, tr("Open Image"), ""/*dir*/, tr("Image files (*.png *.jpg *.bmp)"));
+	if (filePath.isEmpty())
 		return;
-	QImage image = QImage(fileName, nullptr /*format comes from filename*/);
+	QImage image = QImage(filePath, nullptr /*format comes from filename*/);
 	workspace->setImage(image);
-	imageFilePath = fileName;
+	imageFilePath = filePath;
 }
 
-void MenuBar::saveFile() {
-	if (imageFilePath.isEmpty())
-		return;
-	bool saved = workspace->image().save(imageFilePath);
-	if (!saved)
-		QMessageBox::critical(this, "Error", "Failed to save image " + imageFilePath);
-}
-
-void MenuBar::saveFileAs() {
-	QString filePath = QFileDialog::getSaveFileName(this, tr("Save Image"), ""/*dir*/, tr("Image files (*.png *.jpg *.bmp);; PNG (*.png);; JPG (*.jpg);; BMP (*.bmp)"));
+void MenuBar::saveFile(const QString& filePath) {
 	if (filePath.isEmpty())
 		return;
 	bool saved = workspace->image().save(filePath);
 	if (!saved)
 		QMessageBox::critical(this, "Error", "Failed to save image " + filePath);
+}
+
+void MenuBar::saveFileAs() {
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Save Image"), ""/*dir*/, tr("Image files (*.png *.jpg *.bmp);; PNG (*.png);; JPG (*.jpg);; BMP (*.bmp)"));
+	saveFile(filePath);
 }
 
 void MenuBar::setStyle() {

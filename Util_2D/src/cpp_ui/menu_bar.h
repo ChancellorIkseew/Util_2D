@@ -8,7 +8,7 @@ public:
 	MenuBar(QMainWindow* parent, Workspace* workspace);
 private:
 	void openFile();
-	void saveFile();
+	void saveFile(const QString& filePath);
 	void saveFileAs();
 	//
 	void setStyle();
