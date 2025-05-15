@@ -7,15 +7,17 @@ static QRgb calculatePixel(const QImage& image, const int startX, const int star
     int greenSum = 0;
     int blueSum = 0;
 
-    for (int y = startY - factor; y < startY + factor; ++y) {
-        for (int x = startX - factor; x < startX + factor; ++x) {
-            if (x >= 0 && x < image.width() && y >= 0 && y < image.height()) {
-                ++pixelsCount;
-                QRgb pixel = image.pixel(x, y);
-                redSum += qRed(pixel);
-                greenSum += qGreen(pixel);
-                blueSum += qBlue(pixel);
-            }
+    for (int y = startY - factor; y <= startY + factor; ++y) {
+        if (y < 0 || y >= image.height())
+            continue;
+        for (int x = startX - factor; x <= startX + factor; ++x) {
+            if (x < 0 || x >= image.width())
+                continue;
+            ++pixelsCount;
+            QRgb pixel = image.pixel(x, y);
+            redSum += qRed(pixel);
+            greenSum += qGreen(pixel);
+            blueSum += qBlue(pixel);
         }
     }
 
@@ -24,11 +26,11 @@ static QRgb calculatePixel(const QImage& image, const int startX, const int star
     return qRgb(redSum / pixelsCount, greenSum / pixelsCount, blueSum / pixelsCount);
 }
 
-void blur(QImage& image) {
+void boxBlur(QImage& image, const int radius) {
     QImage newImage(image.size(), image.format());
     for (int y = 0; y < image.height(); ++y) {
         for (int x = 0; x < image.width(); ++x) {
-            newImage.setPixel(x, y, calculatePixel(image, x, y, 1));
+            newImage.setPixel(x, y, calculatePixel(image, x, y, radius));
         }
     }
     std::swap(image, newImage);

@@ -7,6 +7,7 @@ public:
 	ToolBar(QWidget* parent, Workspace* workspace);
 private:
 	void useTool();
+	void setBlur();
 private:
 	int toolID = 0;
 	Workspace* workspace;

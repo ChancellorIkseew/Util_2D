@@ -1,5 +1,7 @@
 #include "tool_bar.h"
 //
+#include <QtWidgets/QInputDialog>
+//
 #include "tools/pixel.h"
 #include "tools/blur.h"
 #include "tools/contrast.h"
@@ -19,7 +21,7 @@ ToolBar::ToolBar(QWidget* parent, Workspace* workspace) :
     //
     addAction("pixel",          [this]() { toolID = PIXEL; });
     addAction("brush",          [this]() { toolID = BRUSH; });
-    addAction("blur",           [this]() { toolID = BLUR; });
+    addAction("blur",           [this]() { setBlur(); });
     addAction("contrast",       [this]() { toolID = CONTRAST; });
     addAction("fast migration", [this]() { toolID = FAST_MIGRATION; });
 
@@ -34,10 +36,23 @@ void ToolBar::useTool() {
     //
     switch (toolID) {
     case PIXEL: editPixel(image, workspace->selectedPixel()); break;
-    case BLUR:  blur(image); break;
     case CONTRAST: changeContrast(image); break;
     case FAST_MIGRATION: fastMigration(image, workspace->selectedPixel()); break;
     }
     //
+    workspace->setImage(image);
+}
+
+void ToolBar::setBlur() {
+    QImage& image = workspace->image();
+    if (image.isNull())
+        return;
+
+    QInputDialog dialog(this);
+    dialog.setInputMode(QInputDialog::IntInput);
+    dialog.show();
+
+    int radius = dialog.getInt(this, "radius", "radius");
+    boxBlur(image, radius);
     workspace->setImage(image);
 }
