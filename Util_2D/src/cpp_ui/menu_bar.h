@@ -13,6 +13,7 @@ private:
 	//
 	void setStyle();
 private:
+	QString imageFilePath = "";
 	Workspace* workspace;
 	QMainWindow* mainWindow;
 };

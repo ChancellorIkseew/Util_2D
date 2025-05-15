@@ -25,14 +25,19 @@ void MenuBar::openFile() {
 		return;
 	QImage image = QImage(fileName, nullptr /*format comes from filename*/);
 	workspace->setImage(image);
+	imageFilePath = fileName;
 }
 
 void MenuBar::saveFile() {
-	
+	if (imageFilePath.isEmpty())
+		return;
+	bool saved = workspace->image().save(imageFilePath);
+	if (!saved)
+		QMessageBox::critical(this, "Error", "Failed to save image " + imageFilePath);
 }
 
 void MenuBar::saveFileAs() {
-	QString filePath = QFileDialog::getSaveFileName(this, tr("Save Image"), ""/*dir*/, tr("Image files (*.png *.jpg *.bmp);; png (*.png);; jpg (*.jpg);; bmp (*.bmp)"));
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Save Image"), ""/*dir*/, tr("Image files (*.png *.jpg *.bmp);; PNG (*.png);; JPG (*.jpg);; BMP (*.bmp)"));
 	if (filePath.isEmpty())
 		return;
 	bool saved = workspace->image().save(filePath);
