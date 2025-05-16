@@ -3,9 +3,11 @@
 #include <QtWidgets/QInputDialog>
 //
 #include "tools/pixel.h"
-#include "tools/blur.h"
+#include "tools/box_blur.h"
+#include "tools/gauss_blur.h"
 #include "tools/contrast.h"
 #include "tools/fast_migration.h"
+#include "tool_bar/blur_dialog.h"
 
 enum Tools {
     PIXEL,
@@ -24,7 +26,7 @@ ToolBar::ToolBar(QWidget* parent, Workspace* workspace) :
     addAction("blur",           [this]() { setBlur(); });
     addAction("contrast",       [this]() { toolID = CONTRAST; });
     addAction("fast migration", [this]() { toolID = FAST_MIGRATION; });
-
+    //
     workspace->connectTo(std::bind(&ToolBar::useTool, this));
 }
 
@@ -47,12 +49,16 @@ void ToolBar::setBlur() {
     QImage& image = workspace->image();
     if (image.isNull())
         return;
-
-    QInputDialog dialog(this);
-    dialog.setInputMode(QInputDialog::IntInput);
-    dialog.show();
-
-    int radius = dialog.getInt(this, "radius", "radius");
-    boxBlur(image, radius);
+    //
+    BlurDialog dialog(this);
+    if (dialog.exec() != QDialog::Accepted)
+        return;
+    //
+    int radius = dialog.radius();
+    switch (dialog.mode()) {
+    case BlurMode::BOX:     boxBlur(image, radius);     break;
+    case BlurMode::GAUSS:   gaussBlur(image, radius);   break;
+    }
+    //
     workspace->setImage(image);
 }

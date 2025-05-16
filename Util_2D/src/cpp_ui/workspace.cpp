@@ -14,6 +14,7 @@ void Workspace::scale(const int modifier) {
 	_scale = static_cast<qreal>(modifier) / 100.0f;
 	setTransform(QTransform::fromScale(_scale, _scale), false);
 	resize(_image.size() * _scale);
+	//setGeometry(200 - (32 * _scale / 2), 200 - (32 * _scale / 2), 32 * _scale, 32 * _scale);
 }
 
 void Workspace::mousePressEvent(QMouseEvent* event) {

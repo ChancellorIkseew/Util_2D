@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp_ui\tool_bar\blur_dialog.cpp" />
     <ClCompile Include="src\cpp_ui\workspace.cpp" />
     <ClCompile Include="src\cpp_ui\menu_bar.cpp" />
     <ClCompile Include="src\cpp_ui\scale_slider.cpp" />
@@ -155,14 +156,16 @@
     <ClInclude Include="cpp_ui\menu_bar.h" />
     <ClInclude Include="cpp_ui\scale_slider.h" />
     <ClInclude Include="cpp_ui\tool_bar.h" />
+    <ClInclude Include="src\cpp_ui\tool_bar\blur_dialog.h" />
     <ClInclude Include="src\cpp_ui\workspace.h" />
     <ClInclude Include="src\cpp_ui\menu_bar.h" />
     <ClInclude Include="src\cpp_ui\scale_slider.h" />
     <ClInclude Include="src\cpp_ui\tool_bar.h" />
     <ClInclude Include="src\main_window.h" />
-    <ClInclude Include="src\tools\blur.h" />
+    <ClInclude Include="src\tools\box_blur.h" />
     <ClInclude Include="src\tools\contrast.h" />
     <ClInclude Include="src\tools\fast_migration.h" />
+    <ClInclude Include="src\tools\gauss_blur.h" />
     <ClInclude Include="src\tools\pixel.h" />
     <ClInclude Include="tools\contrast.h" />
     <ClInclude Include="tools\fast_migration.h" />
