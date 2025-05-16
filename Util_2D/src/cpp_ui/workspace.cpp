@@ -8,6 +8,7 @@ Workspace::Workspace(QWidget* parent) : QGraphicsView(parent), _scene(this) {
 	setScene(&_scene);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	setFrameStyle(QFrame::NoFrame);
 }
 
 void Workspace::scale(const int modifier) {
