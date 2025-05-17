@@ -9,6 +9,7 @@
 #include "cpp_ui/scale_slider.h"
 #include "cpp_ui/menu_bar.h"
 #include "cpp_ui/tool_bar.h"
+#include "cpp_ui/palette.h"
 
 
 MainWindow::MainWindow() : QMainWindow(nullptr) {
@@ -26,6 +27,9 @@ MainWindow::MainWindow() : QMainWindow(nullptr) {
     ToolBar* toolBar = new ToolBar(this, workspace);
     mainLayout->addWidget(toolBar, Qt::AlignTop | Qt::AlignLeft);
     
+    Palette* palette = new Palette(this);
+    mainLayout->addWidget(palette, Qt::AlignTop | Qt::AlignLeft);
+
     ScaleSlider* scaleSlider = new ScaleSlider(this);
     mainLayout->addWidget(scaleSlider, Qt::AlignBottom | Qt::AlignRight);
 

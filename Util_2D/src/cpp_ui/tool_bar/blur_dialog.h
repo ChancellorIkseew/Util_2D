@@ -1,3 +1,4 @@
+#pragma once
 #include <QtWidgets/qdialog.h>
 #include <QtWidgets/qformlayout.h>
 #include <QtWidgets/qpushbutton.h>

@@ -156,6 +156,7 @@
     <ClInclude Include="cpp_ui\menu_bar.h" />
     <ClInclude Include="cpp_ui\scale_slider.h" />
     <ClInclude Include="cpp_ui\tool_bar.h" />
+    <ClInclude Include="src\cpp_ui\palette.h" />
     <ClInclude Include="src\cpp_ui\tool_bar\blur_dialog.h" />
     <ClInclude Include="src\cpp_ui\workspace.h" />
     <ClInclude Include="src\cpp_ui\menu_bar.h" />
