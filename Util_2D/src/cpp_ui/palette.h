@@ -1,7 +1,8 @@
 #pragma once
+#include <QtCore/qset.h>
 #include <QtWidgets/qwidget.h>
 #include <QtWidgets/qlayout.h>
-
+#include <QtWidgets/qpushbutton.h>
 
 
 class Palette : public QWidget {

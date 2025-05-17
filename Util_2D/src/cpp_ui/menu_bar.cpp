@@ -3,8 +3,8 @@
 #include <QtWidgets/qfiledialog.h>
 #include <QtWidgets/qmessagebox.h>
 
-MenuBar::MenuBar(QMainWindow* parent, Workspace* workspace) :
-	QMenuBar(parent), mainWindow(parent), workspace(workspace) {
+MenuBar::MenuBar(QMainWindow* parent, Workspace* workspace, Palette* palette) :
+	QMenuBar(parent), mainWindow(parent), workspace(workspace), palette(palette) {
 	QMenu* file = new QMenu("file", this);
 	file->addAction("open", this, &MenuBar::openFile);
 	file->addAction("save", [&]() { saveFile(imageFilePath); });
@@ -25,6 +25,7 @@ void MenuBar::openFile() {
 		return;
 	QImage image = QImage(filePath, nullptr /*format comes from filename*/);
 	workspace->setImage(image);
+	palette->updateFromImage(image);
 	imageFilePath = filePath;
 }
 

@@ -18,21 +18,18 @@ MainWindow::MainWindow() : QMainWindow(nullptr) {
     setCentralWidget(centralWidget);
     QVBoxLayout* mainLayout = new QVBoxLayout(centralWidget);
     setMouseTracking(true);
-
+    //
     Workspace* workspace = new Workspace(this);
-
-    MenuBar* menuBar = new MenuBar(this, workspace);
-    mainLayout->addWidget(menuBar, Qt::AlignTop);
-    
-    ToolBar* toolBar = new ToolBar(this, workspace);
-    mainLayout->addWidget(toolBar, Qt::AlignTop | Qt::AlignLeft);
-    
     Palette* palette = new Palette(this);
-    mainLayout->addWidget(palette, Qt::AlignTop | Qt::AlignLeft);
-
+    MenuBar* menuBar = new MenuBar(this, workspace, palette);
+    ToolBar* toolBar = new ToolBar(this, workspace);
     ScaleSlider* scaleSlider = new ScaleSlider(this);
+    //
+    mainLayout->addWidget(menuBar, Qt::AlignTop);
+    mainLayout->addWidget(toolBar, Qt::AlignTop | Qt::AlignLeft);
+    mainLayout->addWidget(palette, Qt::AlignTop | Qt::AlignLeft);
     mainLayout->addWidget(scaleSlider, Qt::AlignBottom | Qt::AlignRight);
-
+    //
     scaleSlider->connectTo(std::bind(&Workspace::scale, workspace, std::placeholders::_1));
     //connect(this, &MainWindow::wheelEvent, this, &ScaleSlider::onMouseWheelMove);
 }
