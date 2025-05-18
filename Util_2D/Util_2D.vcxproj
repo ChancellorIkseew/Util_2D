@@ -166,6 +166,7 @@
     <ClInclude Include="src\tools\box_blur.h" />
     <ClInclude Include="src\tools\contrast.h" />
     <ClInclude Include="src\tools\fast_migration.h" />
+    <ClInclude Include="src\tools\fill_area.h" />
     <ClInclude Include="src\tools\gauss_blur.h" />
     <ClInclude Include="src\tools\pixel.h" />
     <ClInclude Include="tools\contrast.h" />

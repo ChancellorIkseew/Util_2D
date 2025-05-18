@@ -95,5 +95,8 @@
     <ClInclude Include="src\cpp_ui\palette.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="src\tools\fill_area.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

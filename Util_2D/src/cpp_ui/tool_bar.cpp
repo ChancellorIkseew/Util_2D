@@ -3,15 +3,18 @@
 #include <QtWidgets/QInputDialog>
 //
 #include "tools/pixel.h"
+#include "tools/fill_area.h"
 #include "tools/box_blur.h"
 #include "tools/gauss_blur.h"
 #include "tools/contrast.h"
 #include "tools/fast_migration.h"
+//
 #include "tool_bar/blur_dialog.h"
 
 enum Tools {
     PIXEL,
     BRUSH,
+    FILL,
     BLUR,
     CONTRAST,
     FAST_MIGRATION,
@@ -23,6 +26,7 @@ ToolBar::ToolBar(QWidget* parent, Workspace* workspace, Palette* palette) :
     //
     addAction("pixel",          [this]() { toolID = PIXEL; });
     addAction("brush",          [this]() { toolID = BRUSH; });
+    addAction("fill",           [this]() { toolID = FILL; });
     addAction("blur",           [this]() { setBlur(); });
     addAction("contrast",       [this]() { toolID = CONTRAST; });
     addAction("fast migration", [this]() { toolID = FAST_MIGRATION; });
@@ -38,6 +42,7 @@ void ToolBar::useTool() {
     //
     switch (toolID) {
     case PIXEL: editPixel(image, workspace->selectedPixel(), palette->selectedColor()); break;
+    case FILL: fillArea(image, workspace->selectedPixel(), palette->selectedColor()); break;
     case CONTRAST: changeContrast(image); break;
     case FAST_MIGRATION: fastMigration(image, workspace->selectedPixel()); break;
     }
