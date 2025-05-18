@@ -17,8 +17,8 @@ enum Tools {
     FAST_MIGRATION,
 };
 
-ToolBar::ToolBar(QWidget* parent, Workspace* workspace) :
-	QToolBar(parent), workspace(workspace) {
+ToolBar::ToolBar(QWidget* parent, Workspace* workspace, Palette* palette) :
+	QToolBar(parent), workspace(workspace), palette(palette) {
 	setOrientation(Qt::Vertical);
     //
     addAction("pixel",          [this]() { toolID = PIXEL; });
@@ -37,7 +37,7 @@ void ToolBar::useTool() {
         return;
     //
     switch (toolID) {
-    case PIXEL: editPixel(image, workspace->selectedPixel()); break;
+    case PIXEL: editPixel(image, workspace->selectedPixel(), palette->selectedColor()); break;
     case CONTRAST: changeContrast(image); break;
     case FAST_MIGRATION: fastMigration(image, workspace->selectedPixel()); break;
     }

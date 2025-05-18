@@ -4,12 +4,12 @@
 #include <QtWidgets/qlayout.h>
 #include <QtWidgets/qpushbutton.h>
 
-
 class Palette : public QWidget {
 public:
 	Palette(QWidget* parent) : QWidget(parent) {
 		setMaximumSize(80, 80);
 		grid = new QGridLayout(this);
+		grid->setAlignment(Qt::AlignTop);
 
 		colors.insert(255);
 		colors.insert(400);
@@ -33,6 +33,10 @@ public:
 		updateLayout();
 	}
 
+	QRgb selectedColor() const {
+		return _selectedColor;
+	}
+
 private:
 	void updateLayout() {
 		QLayoutItem* item;
@@ -49,7 +53,9 @@ private:
 		for (const QColor& color : colors) {
 			QPushButton* button = new QPushButton;
 			button->setFixedSize(20, 20);
+			//button->setGeometry(0, 0, 20, 20);
 			button->setStyleSheet(QString("background-color: %1; border: 1px solid black;").arg(color.name()));
+			button->connect(button, &QPushButton::clicked, [this, color]() { _selectedColor = color.rgb(); });
 
 			grid->addWidget(button, row, col);
 			++col;
@@ -60,10 +66,9 @@ private:
 		}
 	}
 
-
-
 private:
 	QGridLayout* grid;
 	QSet<QRgb> colors;
+	QRgb _selectedColor = 0;
 
 };

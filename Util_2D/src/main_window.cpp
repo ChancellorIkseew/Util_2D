@@ -22,7 +22,7 @@ MainWindow::MainWindow() : QMainWindow(nullptr) {
     Workspace* workspace = new Workspace(this);
     Palette* palette = new Palette(this);
     MenuBar* menuBar = new MenuBar(this, workspace, palette);
-    ToolBar* toolBar = new ToolBar(this, workspace);
+    ToolBar* toolBar = new ToolBar(this, workspace, palette);
     ScaleSlider* scaleSlider = new ScaleSlider(this);
     //
     mainLayout->addWidget(menuBar, Qt::AlignTop);
