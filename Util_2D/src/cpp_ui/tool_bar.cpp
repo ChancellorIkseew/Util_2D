@@ -24,12 +24,19 @@ ToolBar::ToolBar(QWidget* parent, Workspace* workspace, Palette* palette) :
 	QToolBar(parent), workspace(workspace), palette(palette) {
 	setOrientation(Qt::Vertical);
     //
-    addAction("pixel",          [this]() { toolID = PIXEL; });
-    addAction("brush",          [this]() { toolID = BRUSH; });
-    addAction("fill",           [this]() { toolID = FILL; });
-    addAction("blur",           [this]() { setBlur(); });
-    addAction("contrast",       [this]() { toolID = CONTRAST; });
-    addAction("fast migration", [this]() { toolID = FAST_MIGRATION; });
+    QIcon pixelIcon("icons/pixel_tool.png");
+    QIcon brushIcon("icons/brush_tool.png");
+    QIcon fillIcon("icons/fill_tool.png");
+    QIcon blurIcon("icons/blur_tool.png");
+    QIcon contrastIcon("icons/contrast_tool.png");
+    QIcon migrationIcon("icons/migration_tool.png");
+    //
+    addAction(pixelIcon,    "pixel",           [this]() { toolID = PIXEL; });
+    addAction(brushIcon,    "brush",           [this]() { toolID = BRUSH; });
+    addAction(fillIcon,     "fill",            [this]() { toolID = FILL; });
+    addAction(blurIcon,     "blur",            [this]() { setBlur(); });
+    addAction(contrastIcon, "contrast",        [this]() { toolID = CONTRAST; });
+    addAction(migrationIcon,"fast migration",  [this]() { toolID = FAST_MIGRATION; });
     //
     workspace->connectTo(std::bind(&ToolBar::useTool, this));
 }

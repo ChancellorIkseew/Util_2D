@@ -24,12 +24,23 @@ const QString themePresets::light{
 	"    border: 2px solid #818B98;"
 	"    border-radius: 4px;"
 	"}"
-
-	/*
+/*---------------------------------------------*/
 	"QToolBar {"
-	"    background-color: #1D1D1D;"
-	"    color: white;"
-	"    border: 2px solid #161616;"
-	"}"*/
+	"    background-color: #818B98;"
+	"    border: 2px solid #565C63;"
+	"}"
+	"QToolButton {"
+	"    background-color: transparent;"
+	"	 padding: 1px;"//avoid move on push effect
+	"    border-radius: 4px;"
+	"}"
+	"QToolButton:hover {"
+	"    background-color: #60656C;"
+	"    border-radius: 4px;"
+	"}"
+	"QToolButton:pressed {"
+	"    background-color: #37393D;"
+	"    border-radius: 4px;"
+	"}"
 
 };

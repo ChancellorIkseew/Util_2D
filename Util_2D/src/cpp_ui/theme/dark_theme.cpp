@@ -24,12 +24,23 @@ const QString themePresets::dark{
 	"    border: 2px solid #3A5986;"
 	"    border-radius: 4px;"
 	"}"
-
-	/*
+/*---------------------------------------------*/
 	"QToolBar {"
 	"    background-color: #1D1D1D;"
-	"    color: white;"
 	"    border: 2px solid #161616;"
-	"}"*/
+	"}"
+	"QToolButton {"
+	"    background-color: transparent;"
+	"	 padding: 1px;"//avoid move on push effect
+	"    border-radius: 4px;"
+	"}"
+	"QToolButton:hover {"
+	"    background-color: #505050;"
+	"    border-radius: 4px;"
+	"}"
+	"QToolButton:pressed {"
+	"    background-color: #4772B3;"
+	"    border-radius: 4px;"
+	"}"
 
 };
