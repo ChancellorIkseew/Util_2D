@@ -2,6 +2,8 @@
 //
 #include <QtWidgets/qfiledialog.h>
 #include <QtWidgets/qmessagebox.h>
+//
+#include "theme/theme_presets.h"
 
 MenuBar::MenuBar(QMainWindow* parent, Workspace* workspace, Palette* palette) :
 	QMenuBar(parent), mainWindow(parent), workspace(workspace), palette(palette) {
@@ -15,7 +17,8 @@ MenuBar::MenuBar(QMainWindow* parent, Workspace* workspace, Palette* palette) :
 	addMenu(settings);
 
 	QMenu* view = new QMenu("view", this);
-	view->addAction("style", this, &MenuBar::setStyle);
+	view->addAction("dark theme", this, &MenuBar::setDarkTheme);
+	view->addAction("light theme", this, &MenuBar::setLightTheme);
 	addMenu(view);
 
 	setFixedHeight(24);
@@ -44,38 +47,9 @@ void MenuBar::saveFileAs() {
 	saveFile(filePath);
 }
 
-void MenuBar::setStyle() {
-	mainWindow->setStyleSheet(
-		"QMainWindow { background-color: #303030; }"
-		//"QPushButton { color: black; background-color: #4CAF50; }"
-		//"QPushButton:hover { background-color: #367C39; }"
-		"QMenuBar {"
-		"    background-color: #1D1D1D;"
-		"    color: white;"
-		"    border: 2px solid #161616;"
-		"}"
-		"QMenuBar::item:selected {"
-		"    background-color: #3A5986;"
-		"    border: 1px solid #4772B3;"
-		"    border-radius: 2px;"
-		"}"
-		"QMenu {"
-		"    background-color: #141414;"
-		"    color: white;"
-		"    border: 1px solid #101010;"
-		"}"
-		"QMenu::item:selected {"
-		"    background-color: #3A5986;"
-		"    border: 2px solid #3A5986;"
-		"    border-radius: 4px;"
-		"}"
-
-		/*
-		"QToolBar {"
-		"    background-color: #1D1D1D;"
-		"    color: white;"
-		"    border: 2px solid #161616;"
-		"}"*/
-
-	);
+void MenuBar::setDarkTheme() {
+	mainWindow->setStyleSheet(themePresets::dark);
+}
+void MenuBar::setLightTheme() {
+	mainWindow->setStyleSheet(themePresets::light);
 }

@@ -143,6 +143,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp_ui\theme\dark_theme.cpp" />
+    <ClCompile Include="src\cpp_ui\theme\light_theme.cpp" />
     <ClCompile Include="src\cpp_ui\tool_bar\blur_dialog.cpp" />
     <ClCompile Include="src\cpp_ui\workspace.cpp" />
     <ClCompile Include="src\cpp_ui\menu_bar.cpp" />
@@ -157,6 +159,7 @@
     <ClInclude Include="cpp_ui\scale_slider.h" />
     <ClInclude Include="cpp_ui\tool_bar.h" />
     <ClInclude Include="src\cpp_ui\palette.h" />
+    <ClInclude Include="src\cpp_ui\theme\theme_presets.h" />
     <ClInclude Include="src\cpp_ui\tool_bar\blur_dialog.h" />
     <ClInclude Include="src\cpp_ui\workspace.h" />
     <ClInclude Include="src\cpp_ui\menu_bar.h" />

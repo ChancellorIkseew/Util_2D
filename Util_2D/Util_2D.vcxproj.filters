@@ -36,6 +36,12 @@
     <ClCompile Include="src\cpp_ui\tool_bar\blur_dialog.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp_ui\theme\dark_theme.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp_ui\theme\light_theme.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cpp_ui\tool_bar.h">
@@ -96,6 +102,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\tools\fill_area.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp_ui\theme\theme_presets.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

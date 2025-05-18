@@ -10,7 +10,7 @@
 #include "cpp_ui/menu_bar.h"
 #include "cpp_ui/tool_bar.h"
 #include "cpp_ui/palette.h"
-
+#include "cpp_ui/theme/theme_presets.h"
 
 MainWindow::MainWindow() : QMainWindow(nullptr) {
     resize(720, 480);
@@ -32,6 +32,8 @@ MainWindow::MainWindow() : QMainWindow(nullptr) {
     //
     scaleSlider->connectTo(std::bind(&Workspace::scale, workspace, std::placeholders::_1));
     //connect(this, &MainWindow::wheelEvent, this, &ScaleSlider::onMouseWheelMove);
+    //
+    setStyleSheet(themePresets::dark);
 }
 
 
