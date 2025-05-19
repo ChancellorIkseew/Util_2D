@@ -11,9 +11,6 @@ private:
 	void openFile();
 	void saveFile(const QString& filePath);
 	void saveFileAs();
-	//
-	void setDarkTheme();
-	void setLightTheme();
 private:
 	QString imageFilePath = "";
 	Workspace* workspace;

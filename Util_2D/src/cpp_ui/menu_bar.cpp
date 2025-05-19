@@ -17,8 +17,10 @@ MenuBar::MenuBar(QMainWindow* parent, Workspace* workspace, Palette* palette) :
 	addMenu(settings);
 
 	QMenu* view = new QMenu("view", this);
-	view->addAction("dark theme", this, &MenuBar::setDarkTheme);
-	view->addAction("light theme", this, &MenuBar::setLightTheme);
+	QMenu* theme = new QMenu("theme", view);
+	theme->addAction("dark",  [&]() { mainWindow->setStyleSheet(themePresets::dark); });
+	theme->addAction("light", [&]() { mainWindow->setStyleSheet(themePresets::light); });
+	view->addMenu(theme);
 	addMenu(view);
 
 	setFixedHeight(24);
@@ -35,7 +37,7 @@ void MenuBar::openFile() {
 }
 
 void MenuBar::saveFile(const QString& filePath) {
-	if (filePath.isEmpty())
+	if (filePath.isEmpty() || workspace->image().isNull())
 		return;
 	bool saved = workspace->image().save(filePath);
 	if (!saved)
@@ -43,13 +45,8 @@ void MenuBar::saveFile(const QString& filePath) {
 }
 
 void MenuBar::saveFileAs() {
+	if (workspace->image().isNull())
+		return;
 	QString filePath = QFileDialog::getSaveFileName(this, tr("Save Image"), ""/*dir*/, tr("Image files (*.png *.jpg *.bmp);; PNG (*.png);; JPG (*.jpg);; BMP (*.bmp)"));
 	saveFile(filePath);
-}
-
-void MenuBar::setDarkTheme() {
-	mainWindow->setStyleSheet(themePresets::dark);
-}
-void MenuBar::setLightTheme() {
-	mainWindow->setStyleSheet(themePresets::light);
 }
