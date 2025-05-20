@@ -43,6 +43,10 @@ const QString themePresets::dark{
 	"    background-color: #4772B3;"
 	"    border-radius: 4px;"
 	"}"
+	"QToolButton:checked {"
+	"    background-color: #4772B3;"
+	"    border-radius: 4px;"
+	"}"
 /*---------------------------------------------*/
 	"QDialog { background-color: #161616; }"
 	"QLabel { color: white; }"

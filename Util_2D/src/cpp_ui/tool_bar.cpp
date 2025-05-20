@@ -31,13 +31,40 @@ ToolBar::ToolBar(QWidget* parent, Workspace* workspace, Palette* palette) :
     QIcon contrastIcon("icons/contrast_tool.png");
     QIcon migrationIcon("icons/migration_tool.png");
     //
-    addAction(pixelIcon,    "pixel",           [this]() { toolID = PIXEL; });
-    addAction(brushIcon,    "brush",           [this]() { toolID = BRUSH; });
-    addAction(fillIcon,     "fill",            [this]() { toolID = FILL; });
-    addAction(blurIcon,     "blur",            [this]() { setBlur(); });
-    addAction(contrastIcon, "contrast",        [this]() { toolID = CONTRAST; });
-    addAction(migrationIcon,"fast migration",  [this]() { toolID = FAST_MIGRATION; });
+    QAction* pixel = addAction(pixelIcon, "pixel");
+    QAction* brush = addAction(brushIcon, "brush");
+    QAction* fill = addAction(fillIcon, "fill");
     //
+    addAction(blurIcon, "blur", [this]() { setBlur(); });
+    addAction(contrastIcon, "contrast", [this]() { toolID = CONTRAST; });
+    addAction(migrationIcon, "fast migration", [this]() { toolID = FAST_MIGRATION; });
+    //
+ 
+    pixel->setCheckable(true);
+    brush->setCheckable(true);
+    fill->setCheckable(true);
+
+    connect(pixel, &QAction::triggered, [this, pixel, brush, fill]() {
+        toolID = PIXEL;
+        pixel->setChecked(true);//
+        brush->setChecked(false);
+        fill->setChecked(false);
+        });
+
+    connect(brush, &QAction::triggered, [this, pixel, brush, fill]() {
+        toolID = BRUSH;
+        pixel->setChecked(false);
+        brush->setChecked(true);//
+        fill->setChecked(false);
+        });
+
+    connect(fill, &QAction::triggered, [this, pixel, brush, fill]() {
+        toolID = FILL;
+        pixel->setChecked(false);
+        brush->setChecked(false);
+        fill->setChecked(true);//
+        });
+
     workspace->connectTo(std::bind(&ToolBar::useTool, this));
 }
 
@@ -49,6 +76,7 @@ void ToolBar::useTool() {
     //
     switch (toolID) {
     case PIXEL: editPixel(image, workspace->selectedPixel(), palette->selectedColor()); break;
+    case BRUSH: break;
     case FILL: fillArea(image, workspace->selectedPixel(), palette->selectedColor()); break;
     case CONTRAST: changeContrast(image); break;
     case FAST_MIGRATION: fastMigration(image, workspace->selectedPixel()); break;
