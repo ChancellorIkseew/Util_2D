@@ -4,7 +4,7 @@
 #include <QtWidgets/QGraphicsView>
 
 class Workspace : public QGraphicsView {
-using Handler = std::function<void()>;
+	using Handler = std::function<void()>;
 public:
 	Workspace(QWidget* parent);
 	void scale(const int modifier);

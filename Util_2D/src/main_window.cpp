@@ -1,23 +1,21 @@
 #include "main_window.h"
 //
-#include <QtWidgets/qpushbutton.h>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/qmessagebox.h>
-#include <QtWidgets/QFileDialog>
-#include <iostream>
-#include "cpp_ui/workspace.h"
-#include "cpp_ui/scale_slider.h"
+#include <QtWidgets/qlayout.h>
+#include "cpp_ui/theme/theme_presets.h"
+//
 #include "cpp_ui/menu_bar.h"
+#include "cpp_ui/scale_slider.h"
 #include "cpp_ui/tool_bar.h"
 #include "cpp_ui/palette.h"
-#include "cpp_ui/theme/theme_presets.h"
+#include "cpp_ui/workspace.h"
 
 MainWindow::MainWindow() : QMainWindow(nullptr) {
     resize(720, 480);
     QWidget* centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
     QVBoxLayout* mainLayout = new QVBoxLayout(centralWidget);
-    setMouseTracking(true);
+    QHBoxLayout* centralSpace = new QHBoxLayout;
+    QVBoxLayout* tools = new QVBoxLayout;
     //
     Workspace* workspace = new Workspace(this);
     Palette* palette = new Palette(this);
@@ -26,31 +24,14 @@ MainWindow::MainWindow() : QMainWindow(nullptr) {
     ScaleSlider* scaleSlider = new ScaleSlider(this);
     //
     mainLayout->addWidget(menuBar, Qt::AlignTop);
-    mainLayout->addWidget(toolBar, Qt::AlignTop | Qt::AlignLeft);
-    mainLayout->addWidget(palette, Qt::AlignTop | Qt::AlignLeft);
-    mainLayout->addWidget(scaleSlider, Qt::AlignBottom | Qt::AlignRight);
+    mainLayout->addLayout(centralSpace, Qt::AlignTop);
+    mainLayout->addWidget(scaleSlider, Qt::AlignBottom);
+    centralSpace->addLayout(tools, Qt::AlignLeft);
+    centralSpace->addWidget(workspace, Qt::AlignRight);
+    tools->addWidget(palette, Qt::AlignTop);
+    tools->addWidget(toolBar, Qt::AlignBottom);
     //
     scaleSlider->connectTo(std::bind(&Workspace::scale, workspace, std::placeholders::_1));
-    //connect(this, &MainWindow::wheelEvent, this, &ScaleSlider::onMouseWheelMove);
     //
     setStyleSheet(themePresets::dark);
-}
-
-
-
-void MainWindow::onButton1Clicked() {
-    QMessageBox::information(this, "Button 1", "Button 1 was clicked!");
-    std::cout << "ddd\n";
-}
-
-
-void MainWindow::onChange(const int value) {
-    std::cout << value << '\n';
-}
-
-
-void MainWindow::wheelEvent(QWheelEvent* event){
-    int delta = event->angleDelta().y();
-    std::cout << "Wheel event" << delta << '\n';
-    QWidget::wheelEvent(event);
 }

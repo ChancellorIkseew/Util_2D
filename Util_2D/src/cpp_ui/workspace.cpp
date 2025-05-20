@@ -4,7 +4,7 @@
 #include <iostream>
 
 Workspace::Workspace(QWidget* parent) : QGraphicsView(parent), _scene(this) {
-	setGeometry(200, 200, 32, 32);
+	setStyleSheet(QString("QWidget {background-color: #1D1D1D;}"));
 	setScene(&_scene);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -23,14 +23,16 @@ void Workspace::mousePressEvent(QMouseEvent* event) {
 	if (!_item)
 		return;
 	Qt::MouseButton button = event->button();
-	//QPoint itemPos(item->pos().x(), item->pos().y());
 
 	_selectedPixel.setX(static_cast<qreal>(event->pos().x()) / _scale);
 	_selectedPixel.setY(static_cast<qreal>(event->pos().y()) / _scale);
 	std::cout << "mouse_click" << std::endl;
 	std::cout << _selectedPixel.x() << " " << _selectedPixel.y() << '\n';
 
-	handler();
+	if (event->button() == Qt::MouseButton::LeftButton)
+		handler();
+	if (event->button() == Qt::MouseButton::MiddleButton)
+		handler();//
 }
 
 void Workspace::setImage(QImage& image) {
