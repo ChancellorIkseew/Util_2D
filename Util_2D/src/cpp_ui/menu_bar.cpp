@@ -4,6 +4,8 @@
 #include <QtWidgets/qmessagebox.h>
 //
 #include "theme/theme_presets.h"
+#include "palette.h"
+#include "workspace.h"
 
 MenuBar::MenuBar(QMainWindow* parent, Workspace* workspace, Palette* palette) :
 	QMenuBar(parent), mainWindow(parent), workspace(workspace), palette(palette) {

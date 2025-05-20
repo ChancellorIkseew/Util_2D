@@ -1,7 +1,8 @@
 #pragma once
 #include <QtWidgets/QToolBar>
-#include "workspace.h"
-#include "palette.h"
+
+class Palette;
+class Workspace;
 
 class ToolBar : public QToolBar {
 public:

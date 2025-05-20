@@ -1,8 +1,9 @@
 #pragma once
 #include <QtWidgets/qmenubar.h>
 #include <QtWidgets/qmainwindow.h>
-#include "workspace.h"
-#include "palette.h"
+
+class Palette;
+class Workspace;
 
 class MenuBar : public QMenuBar {
 public:

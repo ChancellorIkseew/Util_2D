@@ -10,6 +10,8 @@
 #include "tools/fast_migration.h"
 //
 #include "tool_bar/blur_dialog.h"
+#include "palette.h"
+#include "workspace.h"
 
 enum Tools {
     PIXEL,
