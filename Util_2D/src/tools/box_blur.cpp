@@ -1,7 +1,7 @@
 #pragma once
-#include <QtWidgets/qlabel.h>
+#include "tools.h"
 
-static QRgb calculatePixelGauss(const QImage& image, const int startX, const int startY, const int factor) {
+static QRgb calculatePixel(const QImage& image, const int startX, const int startY, const int factor) {
     int pixelsCount = 0;
     int redSum = 0;
     int greenSum = 0;
@@ -14,12 +14,10 @@ static QRgb calculatePixelGauss(const QImage& image, const int startX, const int
             if (x < 0 || x >= image.width())
                 continue;
             ++pixelsCount;
-            double range = static_cast<double>(startX - x) + static_cast<double>(startY - y);
-            double weight = (range + 1.0);
             QRgb pixel = image.pixel(x, y);
-            redSum += qRed(pixel) / weight;
-            greenSum += qGreen(pixel) * weight;
-            blueSum += qBlue(pixel) * weight;
+            redSum += qRed(pixel);
+            greenSum += qGreen(pixel);
+            blueSum += qBlue(pixel);
         }
     }
 
@@ -28,11 +26,11 @@ static QRgb calculatePixelGauss(const QImage& image, const int startX, const int
     return qRgb(redSum / pixelsCount, greenSum / pixelsCount, blueSum / pixelsCount);
 }
 
-void gaussBlur(QImage& image, const int radius) {
+void tools::boxBlur(QImage& image, const int radius) {
     QImage newImage(image.size(), image.format());
     for (int y = 0; y < image.height(); ++y) {
         for (int x = 0; x < image.width(); ++x) {
-            newImage.setPixel(x, y, calculatePixelGauss(image, x, y, radius));
+            newImage.setPixel(x, y, calculatePixel(image, x, y, radius));
         }
     }
     std::swap(image, newImage);

@@ -2,12 +2,7 @@
 //
 #include <QtWidgets/QInputDialog>
 //
-#include "tools/pixel.h"
-#include "tools/fill_area.h"
-#include "tools/box_blur.h"
-#include "tools/gauss_blur.h"
-#include "tools/contrast.h"
-#include "tools/fast_migration.h"
+#include "tools/tools.h"
 //
 #include "tool_bar/blur_dialog.h"
 #include "palette.h"
@@ -77,11 +72,11 @@ void ToolBar::useTool() {
         return;
     //
     switch (toolID) {
-    case PIXEL: editPixel(image, workspace->selectedPixel(), palette->selectedColor()); break;
+    case PIXEL: tools::editPixel(image, workspace->selectedPixel(), palette->selectedColor()); break;
     case BRUSH: break;
-    case FILL: fillArea(image, workspace->selectedPixel(), palette->selectedColor()); break;
-    case CONTRAST: changeContrast(image); break;
-    case FAST_MIGRATION: fastMigration(image, workspace->selectedPixel()); break;
+    case FILL: tools::fillArea(image, workspace->selectedPixel(), palette->selectedColor()); break;
+    case CONTRAST: tools::changeContrast(image); break;
+    case FAST_MIGRATION: tools::fastMigration(image, workspace->selectedPixel()); break;
     }
     //
     workspace->setImage(image);
@@ -98,8 +93,8 @@ void ToolBar::setBlur() {
     //
     int radius = dialog.radius();
     switch (dialog.mode()) {
-    case BlurMode::BOX:     boxBlur(image, radius);     break;
-    case BlurMode::GAUSS:   gaussBlur(image, radius);   break;
+    case BlurMode::BOX:     tools::boxBlur(image, radius);     break;
+    case BlurMode::GAUSS:   tools::gaussBlur(image, radius);   break;
     }
     //
     workspace->setImage(image);

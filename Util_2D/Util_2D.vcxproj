@@ -152,12 +152,14 @@
     <ClCompile Include="src\cpp_ui\tool_bar.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\main_window.cpp" />
+    <ClCompile Include="src\tools\box_blur.cpp" />
+    <ClCompile Include="src\tools\contrast.cpp" />
+    <ClCompile Include="src\tools\fast_migration.cpp" />
+    <ClCompile Include="src\tools\fill_area.cpp" />
+    <ClCompile Include="src\tools\gauss_blur.cpp" />
+    <ClCompile Include="src\tools\pixel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cpp_ui\image.h" />
-    <ClInclude Include="cpp_ui\menu_bar.h" />
-    <ClInclude Include="cpp_ui\scale_slider.h" />
-    <ClInclude Include="cpp_ui\tool_bar.h" />
     <ClInclude Include="src\cpp_ui\palette.h" />
     <ClInclude Include="src\cpp_ui\theme\theme_presets.h" />
     <ClInclude Include="src\cpp_ui\tool_bar\blur_dialog.h" />
@@ -166,15 +168,7 @@
     <ClInclude Include="src\cpp_ui\scale_slider.h" />
     <ClInclude Include="src\cpp_ui\tool_bar.h" />
     <ClInclude Include="src\main_window.h" />
-    <ClInclude Include="src\tools\box_blur.h" />
-    <ClInclude Include="src\tools\contrast.h" />
-    <ClInclude Include="src\tools\fast_migration.h" />
-    <ClInclude Include="src\tools\fill_area.h" />
-    <ClInclude Include="src\tools\gauss_blur.h" />
-    <ClInclude Include="src\tools\pixel.h" />
-    <ClInclude Include="tools\contrast.h" />
-    <ClInclude Include="tools\fast_migration.h" />
-    <ClInclude Include="tools\pixel.h" />
+    <ClInclude Include="src\tools\tools.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

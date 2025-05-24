@@ -1,7 +1,7 @@
 #pragma once
-#include <QtWidgets/qlabel.h>
+#include "tools.h"
 
-void fastMigration(QImage& image, QPoint pixel) {
+void tools::fastMigration(QImage& image, QPoint pixel) {
     QRgb color = image.pixel(pixel);
 
     for (int y = 0; y < image.height(); ++y) {

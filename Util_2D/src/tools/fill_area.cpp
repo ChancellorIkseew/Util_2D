@@ -1,12 +1,12 @@
 #pragma once
-#include <QtWidgets/qlabel.h>
+#include "tools.h"
 #include <list>
 
 static inline bool unique(const QPoint& point, const std::list<QPoint>& spot) {
     return std::find(spot.begin(), spot.end(), point) == spot.end();
 }
 
-void fillArea(QImage& image, QPoint pixel, QRgb color) {
+void tools::fillArea(QImage& image, QPoint pixel, QRgb color) {
     QRgb preveouseColor = image.pixel(pixel);
     QPoint imgSize(image.size().width(), image.size().height());
     //

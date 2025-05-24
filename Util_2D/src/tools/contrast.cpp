@@ -1,7 +1,7 @@
 #pragma once
-#include <QtWidgets/qlabel.h>
+#include "tools.h"
 
-void changeContrast(QImage& image) {
+void tools::changeContrast(QImage& image) {
     for (int y = 0; y < image.height(); ++y) {
         for (int x = 0; x < image.width(); ++x) {
             QRgb pixel = image.pixel(x, y);
