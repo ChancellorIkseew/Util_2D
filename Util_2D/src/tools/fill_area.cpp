@@ -8,8 +8,9 @@ static inline bool unique(const QPoint& point, const std::list<QPoint>& spot) {
 
 void tools::fillArea(QImage& image, QPoint pixel, QRgb color) {
     QRgb preveouseColor = image.pixel(pixel);
+    if (color == preveouseColor)
+        return;
     QPoint imgSize(image.size().width(), image.size().height());
-    //
     std::list<QPoint> spot;
     spot.push_back(pixel);
     //
