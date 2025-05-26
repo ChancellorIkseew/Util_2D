@@ -18,14 +18,12 @@ private:
 	void mousePressEvent(QMouseEvent* event) override final;
 	void mouseReleaseEvent(QMouseEvent* event) override final;
 	void wheelEvent(QWheelEvent* event) override final;
-	//
-	QPoint relativePos(QPoint pos) const;
 public:
 	QGraphicsScene _scene;
 	QScopedPointer<QGraphicsPixmapItem> _item;
 
 	bool _isDragging = false;
-	QPoint _selectedPixel, _lastMousePos;
+	QPoint _selectedPixel;
 	QImage _image;
 	qreal _scale = 1.0;
 	Handler handler;
