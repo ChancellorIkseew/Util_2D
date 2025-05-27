@@ -20,7 +20,7 @@ private:
 	void wheelEvent(QWheelEvent* event) override final;
 public:
 	QGraphicsScene _scene;
-	QScopedPointer<QGraphicsPixmapItem> _item;
+	QGraphicsPixmapItem _item;
 
 	bool _isDragging = false;
 	QPoint _selectedPixel;

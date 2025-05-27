@@ -5,11 +5,14 @@
 
 Workspace::Workspace(QWidget* parent) : QGraphicsView(parent), _scene(this) {
 	setStyleSheet(QString("QWidget {background-color: #1D1D1D; }"));
-	setScene(&_scene);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 	setFrameStyle(QFrame::NoFrame);
 	//setDragMode(QGraphicsView::ScrollHandDrag);
+	//
+	setScene(&_scene);
+	_scene.addItem(&_item);
+	_item.setTransformationMode(Qt::TransformationMode::FastTransformation);
 }
 
 void Workspace::scale(const int modifier) {
@@ -19,10 +22,7 @@ void Workspace::scale(const int modifier) {
 
 void Workspace::mousePressEvent(QMouseEvent* event) {
 	QGraphicsView::mousePressEvent(event);
-	if (!_item)
-		return;
-	QPoint p = event->pos();
-	QPointF pf = mapToScene(p);
+	QPointF pf = mapToScene(event->pos());
 	_selectedPixel = QPoint(pf.x(), pf.y());
 	
 	if (event->button() == Qt::MouseButton::LeftButton)
@@ -31,8 +31,8 @@ void Workspace::mousePressEvent(QMouseEvent* event) {
 		setDragMode(QGraphicsView::RubberBandDrag);*/
 }
 
-void Workspace::mouseReleaseEvent(QMouseEvent* event) {/*
-	QGraphicsView::mouseReleaseEvent(event);
+void Workspace::mouseReleaseEvent(QMouseEvent* event) {
+	QGraphicsView::mouseReleaseEvent(event);/*
 	if (event->button() == Qt::MouseButton::MiddleButton) {
 		_isDragging = false;
 		setCursor(Qt::ArrowCursor);
@@ -46,8 +46,5 @@ void Workspace::wheelEvent(QWheelEvent* event) {
 
 void Workspace::setImage(QImage& image) {
 	_image = image;
-	QScopedPointer<QGraphicsPixmapItem> ptr(new QGraphicsPixmapItem(QPixmap::fromImage(_image)));
-	_item.swap(ptr);
-	_item->setTransformationMode(Qt::TransformationMode::FastTransformation);
-	_scene.addItem(_item.get());
+	_item.setPixmap(QPixmap::fromImage(_image));
 }
