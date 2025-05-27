@@ -1,5 +1,6 @@
 #pragma once
-#include <QtCore/qset.h>
+#include <set>
+#include <QtGui/qrgba64.h>
 #include <QtWidgets/qgraphicsitem.h>
 #include <QtWidgets/qgraphicsview.h>
 
@@ -7,7 +8,7 @@ class Palette : public QGraphicsView {
 public:
 	Palette(QWidget* parent);
 	void updateFromImage(const QImage& image);
-	QRgb selectedColor() const { return _selectedColor; }
+	QColor selectedColor() const { return _selectedColor; }
 private:
 	void updateLayout();
 	void mousePressEvent(QMouseEvent* event);
@@ -16,6 +17,6 @@ private:
 	QGraphicsPixmapItem _item;
 	QImage _palette;
 
-	QSet<QRgb> colors;
-	QRgb _selectedColor = 0;
+	std::set<QColor> colors;
+	QColor _selectedColor = QColor(0, 0, 0, 255);
 };

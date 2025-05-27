@@ -17,7 +17,7 @@ void Palette::updateFromImage(const QImage& image) {
 	colors.clear();
 	for (int y = 0; y < image.height(); ++y) {
 		for (int x = 0; x < image.width(); ++x) {
-			colors.insert(image.pixel(x, y));
+			colors.insert(image.pixelColor(x, y));
 		}
 	}
 	updateLayout();
@@ -29,7 +29,7 @@ void Palette::updateLayout() {
 	//
 	int i = 0;
 	for (const auto& it : colors) {
-		_palette.setPixel(QPoint(i % 4, i / 4), it);
+		_palette.setPixelColor(QPoint(i % 4, i / 4), it);
 		++i;
 	}
 	//
@@ -39,5 +39,9 @@ void Palette::updateLayout() {
 void Palette::mousePressEvent(QMouseEvent* event) {
 	QGraphicsView::mousePressEvent(event);
 	QPointF pf = mapToScene(event->pos());
-	_selectedColor = _palette.pixel(pf.x(), pf.y());
+	_selectedColor = _palette.pixelColor(pf.x(), pf.y());
+}
+
+static inline bool operator<(const QColor& a, const QColor& b) {
+	return a.rgba64().toArgb32() < b.rgba64().toArgb32();
 }
