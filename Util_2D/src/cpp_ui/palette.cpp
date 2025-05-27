@@ -5,11 +5,12 @@
 Palette::Palette(QWidget* parent) : QGraphicsView(parent), _scene(this) {
 	setFixedWidth(100);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-	setScene(&_scene);
-	_scene.addItem(&_item);
 	setFrameStyle(QFrame::NoFrame);
 	setTransform(QTransform::fromScale(20, 20), false);
-	updateLayout();
+	//
+	setScene(&_scene);
+	_scene.addItem(&_item);
+	_item.setTransformationMode(Qt::TransformationMode::FastTransformation);
 }
 
 void Palette::updateFromImage(const QImage& image) {
@@ -37,7 +38,6 @@ void Palette::updateLayout() {
 
 void Palette::mousePressEvent(QMouseEvent* event) {
 	QGraphicsView::mousePressEvent(event);
-	QPoint p = event->pos();
-	QPointF pf = mapToScene(p);
+	QPointF pf = mapToScene(event->pos());
 	_selectedColor = _palette.pixel(pf.x(), pf.y());
 }
