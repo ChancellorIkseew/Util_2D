@@ -1,26 +1,23 @@
 #pragma once
 #include <QtCore/qset.h>
 #include <QtWidgets/qwidget.h>
+#include <QtWidgets/QGraphicsPixmapItem>
+#include <QtWidgets/QGraphicsView>
+#include <QtWidgets/qabstractscrollarea.h>
 #include <QtWidgets/qlayout.h>
 #include <QtWidgets/qpushbutton.h>
+#include <QtGui/QMouseEvent>
 
-class Palette : public QWidget {
+class Palette : public QGraphicsView {
 public:
-	Palette(QWidget* parent) : QWidget(parent) {
-		setMaximumSize(80, 80);
-		grid = new QGridLayout(this);
-		grid->setAlignment(Qt::AlignTop);
-
-		colors.insert(255);
-		colors.insert(400);
-		colors.insert(420);
-		colors.insert(460);
-		colors.insert(480);
-		colors.insert(500);
-		colors.insert(520);
-
+	Palette(QWidget* parent) : QGraphicsView(parent), _scene(this) {
+		setFixedWidth(100);
+		setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+		setScene(&_scene);
+		_scene.addItem(&_item);
+		setFrameStyle(QFrame::NoFrame);
+		setTransform(QTransform::fromScale(20, 20), false);
 		updateLayout();
-
 	}
 
 	void updateFromImage(const QImage& image) {
@@ -39,36 +36,30 @@ public:
 
 private:
 	void updateLayout() {
-		QLayoutItem* item;
-		while ((item = grid->takeAt(0)) != nullptr) {
-			QWidget* widget = item->widget();
-			if (widget != nullptr)
-				widget->deleteLater();
-			delete item;
+		int size = colors.size();
+		_palette = QImage(4, size/4 + 1, QImage::Format::Format_ARGB32);
+
+		int i = 0;
+		for (const auto& it : colors) {
+			_palette.setPixel(QPoint(i % 4, i/4), it);
+			++i;
 		}
 
+		_item.setPixmap(QPixmap::fromImage(_palette));
+	}
 
-		int row = 0;
-		int col = 0;
-		for (const QColor& color : colors) {
-			QPushButton* button = new QPushButton;
-			button->setFixedSize(20, 20);
-			//button->setGeometry(0, 0, 20, 20);
-			button->setStyleSheet(QString("background-color: %1; border: 1px solid black;").arg(color.name()));
-			button->connect(button, &QPushButton::clicked, [this, color]() { _selectedColor = color.rgb(); });
-
-			grid->addWidget(button, row, col);
-			++col;
-			if (col > 3) {
-				col = 0;
-				++row;
-			}
-		}
+	void mousePressEvent(QMouseEvent* event) {
+		QGraphicsView::mousePressEvent(event);
+		QPoint p = event->pos();
+		QPointF pf = mapToScene(p);
+		_selectedColor = _palette.pixel(pf.x(), pf.y());
 	}
 
 private:
-	QGridLayout* grid;
+	QGraphicsScene _scene;
+	QGraphicsPixmapItem _item;
+	QImage _palette;
+
 	QSet<QRgb> colors;
 	QRgb _selectedColor = 0;
-
 };
