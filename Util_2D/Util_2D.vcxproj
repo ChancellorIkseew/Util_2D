@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp_ui\palette.cpp" />
     <ClCompile Include="src\cpp_ui\theme\dark_theme.cpp" />
     <ClCompile Include="src\cpp_ui\theme\light_theme.cpp" />
     <ClCompile Include="src\cpp_ui\tool_bar\blur_dialog.cpp" />

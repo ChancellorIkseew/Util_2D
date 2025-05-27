@@ -60,6 +60,9 @@
     <ClCompile Include="src\tools\pixel.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp_ui\palette.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp_ui\workspace.h">
