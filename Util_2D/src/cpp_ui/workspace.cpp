@@ -45,6 +45,6 @@ void Workspace::wheelEvent(QWheelEvent* event) {
 }
 
 void Workspace::setImage(QImage& image) {
-	_image = image;
+	_image = image.convertToFormat(QImage::Format::Format_ARGB32);
 	_item.setPixmap(QPixmap::fromImage(_image));
 }
