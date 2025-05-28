@@ -8,15 +8,6 @@
 #include "palette.h"
 #include "workspace.h"
 
-enum Tools {
-    PIXEL,
-    BRUSH,
-    FILL,
-    BLUR,
-    CONTRAST,
-    FAST_MIGRATION,
-};
-
 ToolBar::ToolBar(QWidget* parent, Workspace* workspace, Palette* palette) :
 	QToolBar(parent), workspace(workspace), palette(palette) {
 	setOrientation(Qt::Vertical);
@@ -67,19 +58,7 @@ ToolBar::ToolBar(QWidget* parent, Workspace* workspace, Palette* palette) :
 
 
 void ToolBar::useTool() {
-    QImage& image = workspace->image();
-    if (image.isNull())
-        return;
-    //
-    switch (toolID) {
-    case PIXEL: tools::editPixel(image, workspace->selectedPixel(), palette->selectedColor()); break;
-    case BRUSH: break;
-    case FILL: tools::fillArea(image, workspace->selectedPixel(), palette->selectedColor()); break;
-    case CONTRAST: tools::changeContrast(image); break;
-    case FAST_MIGRATION: tools::fastMigration(image, workspace->selectedPixel()); break;
-    }
-    //
-    workspace->setImage(image);
+    tools::useTool(workspace, palette, toolID);
 }
 
 void ToolBar::setBlur() {

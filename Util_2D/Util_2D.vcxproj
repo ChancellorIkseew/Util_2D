@@ -159,6 +159,7 @@
     <ClCompile Include="src\tools\fill_area.cpp" />
     <ClCompile Include="src\tools\gauss_blur.cpp" />
     <ClCompile Include="src\tools\pixel.cpp" />
+    <ClCompile Include="src\tools\use_tool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp_ui\palette.h" />

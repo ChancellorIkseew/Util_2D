@@ -10,7 +10,9 @@ Palette::Palette(QWidget* parent) : QGraphicsView(parent), _scene(this) {
 	//
 	setScene(&_scene);
 	_scene.addItem(&_item);
+	//_scene.addItem(&_frame);
 	_item.setTransformationMode(Qt::TransformationMode::FastTransformation);
+	//_frame.setPixmap(QPixmap("icons/arrow_down.png"));
 }
 
 void Palette::updateFromImage(const QImage& image) {

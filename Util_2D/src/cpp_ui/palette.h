@@ -15,6 +15,7 @@ private:
 private:
 	QGraphicsScene _scene;
 	QGraphicsPixmapItem _item;
+	//QGraphicsPixmapItem _frame;
 	QImage _palette;
 
 	std::set<QColor> colors;
