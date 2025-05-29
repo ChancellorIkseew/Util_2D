@@ -23,6 +23,13 @@ MenuBar::MenuBar(QMainWindow* parent, Workspace* workspace, Palette* palette) :
 	theme->addAction("dark",  [&]() { mainWindow->setStyleSheet(themePresets::dark); });
 	theme->addAction("light", [&]() { mainWindow->setStyleSheet(themePresets::light); });
 	view->addMenu(theme);
+	view->addAction("background color", [&]()
+		{
+			QColor color = QColor::fromRgb(400);
+			QBrush br(color);
+			this->workspace->setBackgroundBrush(br);
+
+		});
 	addMenu(view);
 
 	setFixedHeight(24);

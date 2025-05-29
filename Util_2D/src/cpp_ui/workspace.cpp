@@ -4,7 +4,7 @@
 #include <iostream>
 
 Workspace::Workspace(QWidget* parent) : QGraphicsView(parent), _scene(this) {
-	setStyleSheet(QString("QWidget {background-color: #1D1D1D; }"));
+	setStyleSheet(QString("QWidget { margin: 8px; }"));
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 	setFrameStyle(QFrame::NoFrame);

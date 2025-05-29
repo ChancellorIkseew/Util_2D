@@ -3,7 +3,8 @@
 #include <QtGui/qevent.h>
 
 Palette::Palette(QWidget* parent) : QGraphicsView(parent), _scene(this) {
-	setFixedWidth(100);
+	setFixedWidth(124);
+	setStyleSheet(QString("QWidget { margin: 2px; }"));
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 	setFrameStyle(QFrame::NoFrame);
 	setTransform(QTransform::fromScale(20, 20), false);
