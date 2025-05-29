@@ -8,6 +8,8 @@ class Palette : public QGraphicsView {
 public:
 	Palette(QWidget* parent);
 	void updateFromImage(const QImage& image);
+	void addColor(const QColor color);
+	void setSelectedColor(const QColor color) { _selectedColor = color; }
 	QColor selectedColor() const { return _selectedColor; }
 private:
 	void updateLayout();

@@ -20,6 +20,7 @@ void tools::useTool(Workspace* workspace, Palette* palette, const int toolID) {
     case FILL: tools::fillArea(image, pixel, color); break;
     case CONTRAST: tools::changeContrast(image); break;
     case FAST_MIGRATION: tools::fastMigration(image, pixel); break;
+    case PIPETTE: tools::pickColor(image, pixel, palette); break;
     }
     //
     workspace->setImage(image);

@@ -11,7 +11,7 @@ private:
 	void useTool();
 	void setBlur();
 private:
-	int toolID = 0;
+	int toolID;
 	Workspace* workspace;
 	Palette* palette;
 };

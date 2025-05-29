@@ -15,6 +15,11 @@ Palette::Palette(QWidget* parent) : QGraphicsView(parent), _scene(this) {
 	//_frame.setPixmap(QPixmap("icons/arrow_down.png"));
 }
 
+void Palette::addColor(const QColor color) {
+	colors.insert(color);
+	updateLayout();
+}
+
 void Palette::updateFromImage(const QImage& image) {
 	colors.clear();
 	for (int y = 0; y < image.height(); ++y) {
