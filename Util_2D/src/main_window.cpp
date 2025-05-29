@@ -9,7 +9,7 @@
 #include "cpp_ui/palette.h"
 #include "cpp_ui/workspace.h"
 
-MainWindow::MainWindow() : QMainWindow(nullptr) {
+MainWindow::MainWindow(const QString& filePath) : QMainWindow(nullptr) {
     resize(720, 480);
     QWidget* centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
@@ -34,4 +34,11 @@ MainWindow::MainWindow() : QMainWindow(nullptr) {
     scaleSlider->connectTo(std::bind(&Workspace::scale, workspace, std::placeholders::_1));
     //
     setStyleSheet(themePresets::dark);
+    //
+    if (!filePath.isEmpty()) {
+        QImage image = QImage(filePath, nullptr /*format comes from filename*/);
+        workspace->setImage(image);
+        palette->updateFromImage(image);
+        //todo: implement filePath saving
+    }
 }
