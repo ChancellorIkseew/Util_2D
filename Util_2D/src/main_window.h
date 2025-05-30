@@ -3,5 +3,5 @@
 
 class MainWindow : public QMainWindow {
 public:
-    MainWindow(const QString& filePath);
+    MainWindow(const QString& openFilePath);
 };

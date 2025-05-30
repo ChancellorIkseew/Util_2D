@@ -9,7 +9,7 @@
 #include "cpp_ui/palette.h"
 #include "cpp_ui/workspace.h"
 
-MainWindow::MainWindow(const QString& filePath) : QMainWindow(nullptr) {
+MainWindow::MainWindow(const QString& openFilePath) : QMainWindow(nullptr) {
     resize(720, 480);
     QWidget* centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
@@ -35,8 +35,8 @@ MainWindow::MainWindow(const QString& filePath) : QMainWindow(nullptr) {
     //
     setStyleSheet(themePresets::dark);
     //
-    if (!filePath.isEmpty()) {
-        QImage image = QImage(filePath, nullptr /*format comes from filename*/);
+    if (!openFilePath.isEmpty()) {
+        QImage image = QImage(openFilePath, nullptr /*format comes from filename*/);
         workspace->setImage(image);
         palette->updateFromImage(image);
         //todo: implement filePath saving
