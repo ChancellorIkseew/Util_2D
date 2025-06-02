@@ -3,6 +3,7 @@
 #include <QtWidgets/qlayout.h>
 #include "cpp_ui/theme/theme_presets.h"
 //
+#include "cpp_ui/color_panel.h"
 #include "cpp_ui/menu_bar.h"
 #include "cpp_ui/scale_slider.h"
 #include "cpp_ui/tool_bar.h"
@@ -21,6 +22,7 @@ MainWindow::MainWindow(const QString& openFilePath) : QMainWindow(nullptr) {
     Palette* palette = new Palette(this);
     MenuBar* menuBar = new MenuBar(this, workspace, palette);
     ToolBar* toolBar = new ToolBar(this, workspace, palette);
+    ColorPanel* colorPanel = new ColorPanel(this);
     ScaleSlider* scaleSlider = new ScaleSlider(this);
     //
     mainLayout->addWidget(menuBar, Qt::AlignTop);
@@ -30,6 +32,7 @@ MainWindow::MainWindow(const QString& openFilePath) : QMainWindow(nullptr) {
     centralSpace->addWidget(workspace, Qt::AlignRight);
     tools->addWidget(palette, Qt::AlignTop);
     tools->addWidget(toolBar, Qt::AlignBottom);
+    tools->addWidget(colorPanel, Qt::AlignBottom);
     //
     scaleSlider->connectTo(std::bind(&Workspace::scale, workspace, std::placeholders::_1));
     //

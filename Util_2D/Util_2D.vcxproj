@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp_ui\color_panel.cpp" />
     <ClCompile Include="src\cpp_ui\palette.cpp" />
     <ClCompile Include="src\cpp_ui\theme\dark_theme.cpp" />
     <ClCompile Include="src\cpp_ui\theme\light_theme.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="src\tools\use_tool.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\cpp_ui\color_panel.h" />
     <ClInclude Include="src\cpp_ui\palette.h" />
     <ClInclude Include="src\cpp_ui\theme\theme_presets.h" />
     <ClInclude Include="src\cpp_ui\tool_bar\blur_dialog.h" />
