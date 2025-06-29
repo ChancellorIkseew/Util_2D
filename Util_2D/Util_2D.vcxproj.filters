@@ -72,6 +72,9 @@
     <ClCompile Include="src\cpp_ui\color_panel.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="src\tools\cuter.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp_ui\workspace.h">

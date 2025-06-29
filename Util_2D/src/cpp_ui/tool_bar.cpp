@@ -19,6 +19,7 @@ ToolBar::ToolBar(QWidget* parent, Workspace* workspace, Palette* palette) :
     QIcon blurIcon("icons/blur_tool.png");
     QIcon contrastIcon("icons/contrast_tool.png");
     QIcon migrationIcon("icons/migration_tool.png");
+    QIcon cutIcon("icons/cut_tool.png");
     //
     QAction* pixel = addAction(pixelIcon, "pixel");
     QAction* brush = addAction(brushIcon, "brush");
@@ -28,6 +29,7 @@ ToolBar::ToolBar(QWidget* parent, Workspace* workspace, Palette* palette) :
     addAction(blurIcon, "blur", [this]() { setBlur(); });
     addAction(contrastIcon, "contrast", [this]() { toolID = CONTRAST; });
     addAction(migrationIcon, "fast migration", [this]() { toolID = FAST_MIGRATION; });
+    addAction(cutIcon, "cut", [this]() { cut(); });
     //
     pixel->setCheckable(true);
     brush->setCheckable(true);
@@ -92,5 +94,14 @@ void ToolBar::setBlur() {
     case BlurMode::GAUSS:   tools::gaussBlur(image, radius);   break;
     }
     //
+    workspace->setImage(image);
+}
+
+void ToolBar::cut() {
+    QImage& image = workspace->image();
+    if (image.isNull())
+        return;
+    //
+    tools::cut(image);
     workspace->setImage(image);
 }

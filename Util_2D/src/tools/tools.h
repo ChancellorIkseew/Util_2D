@@ -23,6 +23,7 @@ namespace tools {
 	void fastMigration(QImage& image, QPoint pixel);
 	void pickColor(QImage& image, QPoint pixel, Palette* palette);
 	//
+	void cut(QImage& image);
 	void boxBlur(QImage& image, const int radius);
 	void gaussBlur(QImage& image, const int radius);
 	void changeContrast(QImage& image);

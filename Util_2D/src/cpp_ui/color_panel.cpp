@@ -7,7 +7,7 @@
 ColorPanel::ColorPanel(QWidget* parent) : QWidget(parent) {
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	setLayout(layout);
-	//setFixedSize(100, 200);
+	setFixedSize(100, 200);
 	setStyleSheet(QString("QWidget { margin: 0px; }"));
 
 	example = new QLabel(this);
@@ -19,9 +19,9 @@ ColorPanel::ColorPanel(QWidget* parent) : QWidget(parent) {
 	QLabel* transparencyLabel = new QLabel(this);
 	transparencyLabel->setPixmap(QPixmap(100, 10));
 
-	ScaleSlider* baseColorSlider = new ScaleSlider(this);
-	ScaleSlider* saturationSlider = new ScaleSlider(this);
-	ScaleSlider* transparencySlider = new ScaleSlider(this);
+	ScaleSlider* baseColorSlider = new ScaleSlider(this, 100, 255, 128);
+	ScaleSlider* saturationSlider = new ScaleSlider(this, 100, 255, 255);
+	ScaleSlider* transparencySlider = new ScaleSlider(this, 100, 255, 255);
 
 	layout->addWidget(example);
 	layout->addWidget(baseColorLabel);
@@ -59,7 +59,7 @@ void ColorPanel::updateColor() {
 
 	color.setAlpha(transparency);
 
-	int red = 50, blue = 200, green = 50;
+	int red = 50 * saturation / 255, blue = 200 * saturation / 255, green = 50 * saturation / 255;
 
 
 	color.setRgb(red, green, blue, transparency);

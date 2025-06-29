@@ -156,6 +156,7 @@
     <ClCompile Include="src\main_window.cpp" />
     <ClCompile Include="src\tools\box_blur.cpp" />
     <ClCompile Include="src\tools\contrast.cpp" />
+    <ClCompile Include="src\tools\cuter.cpp" />
     <ClCompile Include="src\tools\fast_migration.cpp" />
     <ClCompile Include="src\tools\fill_area.cpp" />
     <ClCompile Include="src\tools\gauss_blur.cpp" />

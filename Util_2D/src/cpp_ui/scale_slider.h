@@ -7,7 +7,7 @@
 class ScaleSlider : public QWidget {
 using Handler = std::function<void(const int)>;
 public:
-	ScaleSlider(QWidget* parent);
+	ScaleSlider(QWidget* parent, const int size, const int max, const int start);
 	void connectTo(Handler handler) {
 		this->handler = handler;
 	}

@@ -6,20 +6,20 @@
 
 static int MIN_SCALE = 1, MAX_SCALE = 10000;
 
-ScaleSlider::ScaleSlider(QWidget* parent) : QWidget(parent) {
+ScaleSlider::ScaleSlider(QWidget* parent, const int size, const int max, const int start) : QWidget(parent) {
     QHBoxLayout* layout = new QHBoxLayout(this);
     setLayout(layout);
-    setFixedSize(200, 40);
+    setFixedSize(size, 40);
 
     slider = new QSlider(Qt::Horizontal, this);
     slider->setBaseSize(200, 20);
-    slider->setRange(MIN_SCALE, MAX_SCALE);
-    slider->setValue(100);
+    slider->setRange(MIN_SCALE, max);
+    slider->setValue(start);
     layout->addWidget(slider);
 
     inputField = new QLineEdit(this);
     inputField->setFixedSize(40, 20);
-    inputField->setText("100");
+    inputField->setText(QString::number(start));
     QIntValidator* validator = new QIntValidator(MIN_SCALE, MAX_SCALE, this);
     inputField->setValidator(validator);
     layout->addWidget(inputField);

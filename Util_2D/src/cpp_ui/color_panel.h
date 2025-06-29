@@ -16,7 +16,7 @@ private:
 	void setTransparency(const int val);
 
 private:
-	int colorBase, saturation, transparency = 255;
+	int colorBase = 0, saturation = 255, transparency = 255;
 
 	QImage _palette;
 	QLabel* example;

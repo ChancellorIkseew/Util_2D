@@ -10,6 +10,7 @@ public:
 private:
 	void useTool();
 	void setBlur();
+	void cut();
 private:
 	int toolID;
 	Workspace* workspace;

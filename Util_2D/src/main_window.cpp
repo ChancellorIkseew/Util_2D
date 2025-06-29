@@ -23,7 +23,7 @@ MainWindow::MainWindow(const QString& openFilePath) : QMainWindow(nullptr) {
     MenuBar* menuBar = new MenuBar(this, workspace, palette);
     ToolBar* toolBar = new ToolBar(this, workspace, palette);
     ColorPanel* colorPanel = new ColorPanel(this);
-    ScaleSlider* scaleSlider = new ScaleSlider(this);
+    ScaleSlider* scaleSlider = new ScaleSlider(this, 200, 10000, 100);
     //
     mainLayout->addWidget(menuBar, Qt::AlignTop);
     mainLayout->addLayout(centralSpace, Qt::AlignTop);
